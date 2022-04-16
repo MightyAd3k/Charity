@@ -1,5 +1,19 @@
 {% extends '_base_.html' %}
 {% load static %}
+
+{% block header %}
+    <header class="header--main-page">
+    {% include '_navbar_.html' %}
+        <div class="slogan container container--90">
+            <div class="slogan--item">
+                <h1>
+                    Zacznij pomagać!<br/>
+                    Oddaj niechciane rzeczy w zaufane ręce
+                </h1>
+            </div>
+        </div>
+    </header>
+{% endblock %}
 {% block content %}
     <section id="stats" class="stats">
         <div class="container container--85">
@@ -56,9 +70,9 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt
                 libero
                 optio esse quisquam illo omnis.</p>
-            <img src="{% static 'images/signature.svg' %}" class="about-us--text-signature" alt="Signature"/>
+            <img class="about-us--text-signature" src="{% static '/images/signature.svg' %}" alt="Signature"/>
         </div>
-        <div class="about-us--image"><img src="{% static 'images/about-us.jpg' %}" alt="People in circle"/></div>
+        <div class="about-us--image"><img src="{% static '/images/about-us.jpg' %}" alt="People in circle"/></div>
     </section>
 
     <section id="help" class="help">
