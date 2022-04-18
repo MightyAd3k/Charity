@@ -15,7 +15,7 @@ class Register(View):
         password = request.POST.get('password')
 
         User.objects.create_user(username=email, first_name=name, last_name=surname, password=password)
-        return redirect('/login/')
+        return redirect('login')
 
 
 class Login(View):
