@@ -29,7 +29,7 @@ class Login(View):
         if user is not None:
             login(request, user)
         else:
-            return redirect('register')
+            return redirect('registration')
         return redirect('home')
 
 
