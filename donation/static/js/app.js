@@ -238,52 +238,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             const categories = document.querySelectorAll('input[name="categories"]:checked')
-            const categories_of_institution = document.querySelectorAll('.categories_of_institution')
-            const institutionsIDs = document.querySelectorAll('input[name="organization"]')
+            const categories_of_institution = document.querySelectorAll('#categories_of_institution')
+            const institutionsIDs = document.querySelectorAll('#organization')
 
-            // institutionsIDs[0].parentElement.parentElement.style.display = 'none'
-
-            function getCategoryList1(array) {
-                const catList1 = []
-                for (let cat of array) {
-                    catList1.push(cat.value.split(''))
-                }
-                return catList1
-            }
-            const institutionCategories = getCategoryList1(categories_of_institution)
-            console.log(institutionCategories)
-
-            function getCategoryList(array) {
-                const catList = []
-                for (let cat of array) {
-                    catList.push(cat.value)
-                }
-                return catList
-            }
-            const getCheckedCategories = getCategoryList(categories)
-            console.log(getCheckedCategories)
-
-            // institutionsIDs.forEach(function (i) {
-            //     // console.log(i)
-            //     getCheckedCategories.forEach(function (j) {
-            //         // console.log(j)
-            //         if (j == '3') {
-            //             i.parentElement.parentElement.style.display = 'none'
-            //         }
-            //     })
-            // })
-            institutionsIDs.forEach(function (i) {
-                // console.log(i)
-                institutionCategories.forEach(function (j) {
-                    // console.log(j)
-                    if (j.includes('3')) {
-                        i.parentElement.parentElement.style.display = 'none'
-                    }
-                })
+            const checked_categories = []
+            categories.forEach(function (elem) {
+                checked_categories.push(elem.value)
             })
+            //console.log('Zaznaczone kategorie:' + checked_categories)
 
+            const institution_categories = []
+            categories_of_institution.forEach(function (category) {
+                institution_categories.push(category.textContent)
+            })
+            //console.log('Listy kategorii:' + institution_categories)
 
             // TODO: get data from inputs and show them in summary
+
+            // Collect inputs from step 4
+            const bags = document.querySelector('input[name="bags"]')
+            const organization = document.querySelector('input[name="organization"]:checked').parentElement.children[2].firstElementChild
+            const address = document.querySelector('input[name="address"]')
+            const city = document.querySelector('input[name="city"]')
+            const postcode = document.querySelector('input[name="postcode"]')
+            const phone = document.querySelector('input[name="phone"]')
+            const data = document.querySelector('input[name="data"]')
+            const time = document.querySelector('input[name="time"]')
+            const more_info = document.querySelector('#more_info')
+
+            // Show them in ste 5
+
+            const bags_amount = document.getElementById('bags_amount')
+            const organization_name = document.getElementById('organization_name')
+            const address_info = document.getElementById('address_info').children
+            const pick_up_info = document.getElementById('pick_up_info').children
+
+            let bags_value = parseInt(bags.value)
+            if(bags_value === 1) {
+                bags_amount.innerText = bags.value + ' worek'
+            } else if(bags_value > 1 && bags_value < 5) {
+                bags_amount.innerText = bags.value + ' worki'
+            } else {
+                bags_amount.innerText = bags.value + ' worków'
+            }
+            organization_name.innerText = organization.textContent
+            address_info[0].innerText = address.value
+            address_info[1].innerText = city.value
+            address_info[2].innerText = postcode.value
+            address_info[3].innerText = phone.value
+            pick_up_info[0].innerText = data.value
+            pick_up_info[1].innerText = time.value
+            pick_up_info[2].innerText = more_info.value
+
         }
 
         /**
@@ -303,16 +309,3 @@ document.addEventListener("DOMContentLoaded", function () {
         new FormSteps(form);
     }
 });
-
-// function getCategoryList(array) {
-//     const catList = []
-//     for (let cat of array) {
-//         catList.push(cat.textContent)
-//     }
-//     return catList
-// }
-
-// const categories = document.querySelectorAll('input[name="categories"]:checked')
-// let categoryList = getCategoryList(categories)
-//
-// console.log(categoryList)
