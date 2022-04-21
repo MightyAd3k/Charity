@@ -65,7 +65,7 @@
                     {% for obj in categories %}
                         <div class="form-group form-group--checkbox">
                             <label>
-                                <input type="checkbox" name="categories" value="clothes-to-use"/>
+                                <input type="checkbox" name="categories" value="{{ obj.id }}"/>
                                 <span class="checkbox"></span>
                                 <span class="description">{{ obj.name }}</span>
                             </label>
@@ -90,7 +90,7 @@
 
                     <div class="form-group form-group--buttons">
                         <button type="button" class="btn prev-step">Wstecz</button>
-                        <button type="button" class="btn next-step">Dalej</button>
+                        <button id="next_btn" type="button" class="btn next-step">Dalej</button>
                     </div>
                 </div>
 
@@ -102,11 +102,12 @@
                     {% for obj in institutions %}
                         <div class="form-group form-group--checkbox">
                             <label>
-                                <input type="radio" name="organization" value="old"/>
+                                <input type="radio" name="organization" value="{{ obj.id }}"/>
                                 <span class="checkbox radio"></span>
                                 <span class="description">
                                     <div class="title">{{ obj.name }}</div>
                                     <div class="subtitle">{{ obj.description }}</div>
+                                    <input class="categories_of_institution" value="{% for cat in obj.categories.all %}{{ cat.id }}{% endfor %}">
                                 </span>
                             </label>
                         </div>
@@ -118,7 +119,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 5 -->
+                <!-- STEP 4 -->
                 <div data-step="4">
                     <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
 
@@ -170,7 +171,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 6 -->
+                <!-- STEP 5 -->
                 <div data-step="5">
                     <h3>Podsumowanie Twojej darowizny</h3>
 
